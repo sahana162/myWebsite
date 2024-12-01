@@ -1,0 +1,99 @@
+// Function to show login page
+function showLoginPage() {
+    document.getElementById('welcome-page').style.display = 'none';
+    document.getElementById('login-page').style.display = 'block';
+    document.getElementById('registration-page').style.display = 'none';
+}
+
+// Function to show registration page
+function showRegistrationPage() {
+    document.getElementById('welcome-page').style.display = 'none';
+    document.getElementById('login-page').style.display = 'none';
+    document.getElementById('registration-page').style.display = 'block';
+}
+
+// Function to show the welcome page
+function showWelcomePage() {
+    document.getElementById('login-page').style.display = 'none';
+    document.getElementById('registration-page').style.display = 'none';
+    document.getElementById('welcome-page').style.display = 'block';
+}
+
+// Function to toggle the password visibility
+function togglePasswordVisibility() {
+    const passwordField = document.getElementById('login-password');
+    const passwordIcon = document.querySelector('.show-password');
+
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        passwordIcon.textContent = '🙈'; // Show password icon
+    } else {
+        passwordField.type = 'password';
+        passwordIcon.textContent = '👁️'; // Hide password icon
+    }
+}
+
+// Function to validate the login form
+function validateLoginForm() {
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+    let valid = true;
+
+    // Reset error messages
+    document.getElementById('email-error').style.display = 'none';
+    document.getElementById('password-error').style.display = 'none';
+
+    // Email validation
+    if (!validateEmail(email)) {
+        document.getElementById('email-error').textContent = 'Please enter a valid email address.';
+        document.getElementById('email-error').style.display = 'block';
+        valid = false;
+    }
+
+    // Password validation
+    if (password.length < 6) {
+        document.getElementById('password-error').textContent = 'Password must be at least 6 characters.';
+        document.getElementById('password-error').style.display = 'block';
+        valid = false;
+    }
+
+    return valid;
+}
+
+// Function to validate email format
+function validateEmail(email) {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return emailPattern.test(email);
+}
+
+// Function to handle login form submission
+function loginUser(event) {
+    event.preventDefault(); // Prevent form submission
+
+    // Validate the login form
+    if (!validateLoginForm()) {
+        return;
+    }
+
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+
+    // Simulate login (this is where you would send the data to a backend)
+    alert(`Logged in successfully! Welcome back, ${email}`);
+
+    // Reset the form and return to the welcome page
+    document.getElementById('login-form').reset();
+    showWelcomePage();
+}
+
+// Function to handle registration form submission
+function registerUser(event) {
+    event.preventDefault();
+
+    // Register the user (you can add further validation and backend handling)
+    alert('Registration successful! You can now log in.');
+
+    // Reset the form and show the welcome page
+    document.getElementById('registration-form').reset();
+    showWelcomePage();
+}

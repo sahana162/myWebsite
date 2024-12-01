@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DefineEdU</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #fff;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo h1 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        header .logo p {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        header nav a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        button {
+            background-color: #7AB2D3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #5b97b3;
+        }
+
+        h1 {
+            color: #1a1919;
+        }
+
+        /* Pages visibility */
+        #login-page {
+            display: none;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="text"], input[type="email"], input[type="password"], input[type="date"] {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .password-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .password-wrapper input {
+            width: 100%;
+        }
+
+        .show-password {
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Welcome Page -->
+    <div id="welcome-page" class="page active">
+        <header>
+            <div class="logo">
+                <h1>DefineEdU</h1>
+                <p class="tagline">Learning that adapts with you</p>
+            </div>
+            <nav>
+                <a href="#login" onclick="showLoginPage()">Login</a>
+                <a href="#register" onclick="showRegistrationPage()">Register</a>
+            </nav>
+        </header>
+
+        <div class="container">
+            <h1>Welcome to DefineEdU</h1>
+            <p>Your personalized learning experience starts here.</p>
+            <h2>About DefineEdU</h2>
+            <p>DefineEdU is an innovative, AI-driven online platform designed to provide personalized learning experiences tailored to individual learners' needs, preferences, and progress. The platform's primary goal is to guide users in their educational journey by offering curated learning materials, career path suggestions, and interactive tools that adapt based on the learner's performance. DefineEdU employs a dynamic questionnaire system that evaluates the user’s interests, skills, and preferences to suggest customized career paths and relevant educational resources, including courses, books, and articles.</p>
+            <h3>Features:</h3>
+            <ul>
+                <li>Personalized career path suggestions based on your interests.</li>
+                <li>Curated learning resources to help you advance your skills.</li>
+                <li>Interactive questionnaire to identify your strengths and preferences.</li>
+                <li>Supportive community and experts to guide your journey.</li>
+            </ul>
+            <button onclick="showRegistrationPage()">Get Started</button>
+        </div>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login-page" class="page">
+        <header>
+            <div class="logo">
+                <h1>DefineEdU</h1>
+                <p class="tagline">Learning that adapts with you</p>
+            </div>
+            <nav>
+                <a href="#welcome" onclick="showWelcomePage()">Home</a>
+                <a href="#register" onclick="showRegistrationPage()">Register</a>
+            </nav>
+        </header>
+
+        <div class="container">
+            <h2>Login</h2>
+            <form id="login-form" onsubmit="loginUser(event)">
+                <label for="login-email">Email Address</label>
+                <input type="email" id="login-email" required placeholder="Enter your email">
+                <small id="email-error" class="error-message"></small>
+
+                <label for="login-password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="login-password" required placeholder="Enter your password">
+                    <span class="show-password" onclick="togglePasswordVisibility()">👁️</span>
+                </div>
+                <small id="password-error" class="error-message"></small>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Registration Page -->
+    <div id="registration-page" class="page">
+        <header>
+            <div class="logo">
+                <h1>DefineEdU</h1>
+                <p class="tagline">Learning that adapts with you</p>
+            </div>
+            <nav>
+                <a href="#login" onclick="showLoginPage()">Login</a>
+                <a href="#welcome" onclick="showWelcomePage()">Home</a>
+            </nav>
+        </header>
+
+        <div class="container">
+            <h2>Register</h2>
+            <form id="registration-form" onsubmit="registerUser(event)">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" required placeholder="Enter your full name">
+
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" required>
+
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required placeholder="Enter your email">
+
+                <label for="password">Password</label>
+                <input type="password" id="password" required placeholder="Create a password">
+
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Function to show login page
+        function showLoginPage() {
+            document.getElementById('welcome-page').style.display = 'none';
+            document.getElementById('login-page').style.display = 'block';
+            document.getElementById('registration-page').style.display = 'none';
+        }
+
+        // Function to show registration page
+        function showRegistrationPage() {
+            document.getElementById('welcome-page').style.display = 'none';
+            document.getElementById('login-page').style.display = 'none';
+            document.getElementById('registration-page').style.display = 'block';
+        }
+
+        // Function to show the welcome page
+        function showWelcomePage() {
+            document.getElementById('login-page').style.display = 'none';
+            document.getElementById('registration-page').style.display = 'none';
+            document.getElementById('welcome-page').style.display = 'block';
+        }
+
+        // Function to toggle the password visibility
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('login-password');
+            const passwordIcon = document.querySelector('.show-password');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                passwordIcon.textContent = '🙈'; // Show password icon
+            } else {
+                passwordField.type = 'password';
+                passwordIcon.textContent = '👁️'; // Hide password icon
+            }
+        }
+
+        // Function to validate the login form
+        function validateLoginForm() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            let valid = true;
+
+            // Reset error messages
+            document.getElementById('email-error').style.display = 'none';
+            document.getElementById('password-error').style.display = 'none';
+
+            // Email validation
+            if (!validateEmail(email)) {
+                document.getElementById('email-error').textContent = 'Please enter a valid email address.';
+                document.getElementById('email-error').style.display = 'block';
+                valid = false;
+            }
+
+            // Password validation
+            if (password.length < 6) {
+                document.getElementById('password-error').textContent = 'Password must be at least 6 characters.';
+                document.getElementById('password-error').style.display = 'block';
+                valid = false;
+            }
+
+            return valid;
+        }
+
+        // Function to validate email format
+        function validateEmail(email) {
+            const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            return emailPattern.test(email);
+        }
+
+        // Function to handle login form submission
+        function loginUser(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Validate the login form
+            if (!validateLoginForm()) {
+                return;
+            }
+
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            // Simulate login (this is where you would send the data to a backend)
+            alert(`Logged in successfully! Welcome back, ${email}`);
+
+            // Reset the form and return to the welcome page
+            document.getElementById('login-form').reset();
+            showWelcomePage();
+        }
+
+        // Function to handle registration form submission
+        function registerUser(event) {
+            event.preventDefault();
+
+            // Register the user (you can add further validation and backend handling)
+            alert('Registration successful! You can now log in.');
+
+            // Reset the form and show the welcome page
+            document.getElementById('registration-form').reset();
+            showWelcomePage();
+        }
+    </script>
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DefineEdU</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styling similar to the earlier one, adding more sections */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #848282;
+            color: white;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        header .tagline {
+            font-size: 16px;
+            color: #bbb;
+        }
+
+        .auth-links {
+            font-size: 14px;
+        }
+
+        .auth-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .auth-links a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #2d3a3f;
+        }
+
+        button {
+            padding: 15px 25px;
+            font-size: 16px;
+            background-color: #7379c1;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #ac76c7;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            width: 100%;
+            border: 1px solid #ccc;
+        }
+
+        #result-section {
+            text-align: center;
+        }
+
+        #career-path {
+            font-size: 18px;
+            color: #333;
+        }
+
+        #learning-materials-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .material {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .material h3 {
+            margin: 0 0 10px;
+        }
+
+        .material p {
+            margin: 5px 0;
+        }
+
+        .material a {
+            color: #5a7b9e;
+            text-decoration: none;
+        }
+
+        .material a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <!-- Header Section -->
+    <header>
+        <div>
+            <h1>DefineEdU</h1>
+            <p class="tagline">Learning That Adapts To You...</p>
+        </div>
+        <div class="auth-links">
+            <a href="#login-page" onclick="showLoginPage()">Login</a>
+            <a href="#register-page" onclick="showRegisterPage()">Register</a>
+        </div>
+    </header>
+
+    <!-- Welcome Page -->
+    <div class="container" id="welcome-page">
+        <header>
+            <h1>Welcome to DefineEdU</h1>
+            <p>Your personalized learning experience starts here.</p>
+        </header>
+        <main>
+            <h2>About DefineEdU</h2>
+            <p>At DefineEdU, we believe that learning should be tailored to your unique interests, preferences, and goals. Our platform offers personalized career path suggestions, educational resources, and much more!</p>
+            <h3>Features:</h3>
+            <ul>
+                <li>Personalized career path suggestions based on your interests.</li>
+                <li>Curated learning resources to help you advance your skills.</li>
+                <li>Interactive questionnaire to identify your strengths and preferences.</li>
+                <li>Supportive community and experts to guide your journey.</li>
+            </ul>
+            <button onclick="showQuestionnairePage()">Let's Get Started</button>
+        </main>
+    </div>
+
+    <!-- Questionnaire Page -->
+    <div class="container" id="questionnaire-page" style="display:none;">
+        <header>
+            <h1>Career Path Questionnaire</h1>
+            <p>Answer the following questions to help us understand your interests and suggest the best career options.</p>
+        </header>
+        <main>
+            <form id="questionnaire-form">
+                <label for="question1">What subject do you enjoy most?</label>
+                <select id="question1" required>
+                    <option value="Math">Math</option>
+                    <option value="Science">Science</option>
+                    <option value="Literature">Literature</option>
+                    <option value="Art">Art</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Business">Business</option>
+                    <option value="Psychology">Psychology</option>
+                </select>
+
+                <label for="question2">What type of work do you enjoy?</label>
+                <select id="question2" required>
+                    <option value="Data">Data</option>
+                    <option value="Machines">Machines</option>
+                    <option value="People">People</option>
+                    <option value="Creativity">Creativity</option>
+                    <option value="Research">Research</option>
+                    <option value="Project Management">Project Management</option>
+                </select>
+
+                <label for="question3">Where would you prefer to work?</label>
+                <select id="question3" required>
+                    <option value="Office">Office</option>
+                    <option value="Lab">Lab</option>
+                    <option value="Outdoor">Outdoor</option>
+                    <option value="Remote">Remote</option>
+                    <option value="Startup">Startup</option>
+                    <option value="Corporation">Corporation</option>
+                </select>
+
+                <button type="button" onclick="submitAnswers()">Submit Answers</button>
+            </form>
+        </main>
+    </div>
+
+    <!-- Result Page -->
+    <div class="container" id="result-page" style="display:none;">
+        <header>
+            <h1>Your Suggested Career Path</h1>
+        </header>
+        <main>
+            <div id="result-section">
+                <p id="career-path"></p>
+                <a href="#learning-materials-page" onclick="showLearningMaterialsPage()">Click here for Learning Materials</a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Learning Materials Page -->
+    <div class="container" id="learning-materials-page" style="display:none;">
+        <header>
+            <h1>Learning Materials for Your Career Path</h1>
+            <p>Based on your career interest, here are some learning materials to help you get started.</p>
+        </header>
+        <main id="learning-materials-section">
+            <h2>Loading...</h2>
+            <div id="materials-list"></div>
+        </main>
+    </div>
+
+    <script>
+        // Function to display the questionnaire page
+        function showQuestionnairePage() {
+            document.getElementById('welcome-page').style.display = 'none';
+            document.getElementById('questionnaire-page').style.display = 'block';
+        }
+
+        // Function to submit answers and display career suggestion
+        function submitAnswers() {
+            const question1 = document.getElementById('question1').value;
+            const question2 = document.getElementById('question2').value;
+            const question3 = document.getElementById('question3').value;
+
+            let careerSuggestion = analyzeAnswers(question1, question2, question3);
+
+            // Storing the results in localStorage for later use in result-page and learning-materials-page
+            localStorage.setItem('careerSuggestion', careerSuggestion);
+
+            // Display result page
+            document.getElementById('questionnaire-page').style.display = 'none';
+            document.getElementById('result-page').style.display = 'block';
+
+            // Display career suggestion on result page
+            document.getElementById('career-path').innerText = `Based on your answers, we suggest the career path: ${careerSuggestion}`;
+        }
+
+        // AI-like function to analyze answers and suggest a career path
+        function analyzeAnswers(subject, workPreference, environment) {
+            let career = 'Undetermined Career Path';
+
+            // AI-like logic with more sophisticated scoring
+            const scores = {
+                "Data Scientist": 0,
+                "Engineer": 0,
+                "Teacher": 0,
+                "Graphic Designer": 0,
+                "Software Developer": 0,
+                "Researcher": 0,
+                "Business Analyst": 0
+            };
+
+            // Scoring system based on subjects
+            if (subject === "Math") {
+                scores["Data Scientist"] += 2;
+                scores["Engineer"] += 1;
+            } else if (subject === "Science") {
+                scores["Engineer"] += 2;
+                scores["Teacher"] += 1;
+            } else if (subject === "Literature") {
+                scores["Teacher"] += 2;
+                scores["Graphic Designer"] += 1;
+            } else if (subject === "Art") {
+                scores["Graphic Designer"] += 2;
+                scores["Teacher"] += 1;
+            } else if (subject === "Technology") {
+                scores["Software Developer"] += 2;
+                scores["Engineer"] += 1;
+            } else if (subject === "Engineering") {
+                scores["Engineer"] += 2;
+                scores["Researcher"] += 1;
+            } else if (subject === "Business") {
+                scores["Business Analyst"] += 2;
+                scores["Engineer"] += 1;
+            } else if (subject === "Psychology") {
+                scores["Teacher"] += 2;
+                scores["Researcher"] += 1;
+            }
+
+            // Scoring system based on work preferences
+            if (workPreference === "Data") {
+                scores["Data Scientist"] += 2;
+            } else if (workPreference === "Machines") {
+                scores["Engineer"] += 2;
+                scores["Software Developer"] += 1;
+            } else if (workPreference === "People") {
+                scores["Teacher"] += 2;
+            } else if (workPreference === "Creativity") {
+                scores["Graphic Designer"] += 2;
+            } else if (workPreference === "Research") {
+                scores["Researcher"] += 2;
+            } else if (workPreference === "Project Management") {
+                scores["Business Analyst"] += 2;
+            }
+
+            // Scoring system based on work environment
+            if (environment === "Remote") {
+                scores["Software Developer"] += 1;
+                scores["Data Scientist"] += 1;
+            } else if (environment === "Office" || environment === "Lab") {
+                scores["Engineer"] += 2;
+            } else if (environment === "Startup" || environment === "Corporation") {
+                scores["Business Analyst"] += 2;
+            }
+
+            // Find career path with highest score
+            let maxScore = -1;
+            for (const careerName in scores) {
+                if (scores[careerName] > maxScore) {
+                    maxScore = scores[careerName];
+                    career = careerName;
+                }
+            }
+
+            return career;
+        }
+
+        // Function to display learning materials page
+        function showLearningMaterialsPage() {
+            const career = localStorage.getItem('careerSuggestion');
+            let materials = [];
+
+            // Define learning materials based on career suggestion
+            if (career === 'Data Scientist') {
+                materials = [
+                    { title: "Learn Data Science", type: "Course", link: "https://www.coursera.org/learn/data-science" },
+                    { title: "Data Science for Business", type: "Book", link: "https://www.amazon.com/Data-Science-Business-Analytics-Professionals/dp/1449361323" }
+                ];
+            } else if (career === 'Engineer') {
+                materials = [
+                    { title: "Learn Engineering", type: "Course", link: "https://www.edx.org/learn/engineering" },
+                    { title: "The Design of Everyday Things", type: "Book", link: "https://www.amazon.com/Design-Everyday-Things-Revised-Expanded/dp/0465050654" }
+                ];
+            } else if (career === 'Teacher') {
+                materials = [
+                    { title: "Teaching Strategies", type: "Course", link: "https://www.coursera.org/learn/teaching-strategies" },
+                    { title: "The Courage to Teach", type: "Book", link: "https://www.amazon.com/Courage-Teach-Exploring-Inner-Teaching/dp/0787967195" }
+                ];
+            } else if (career === 'Graphic Designer') {
+                materials = [
+                    { title: "Graphic Design Basics", type: "Course", link: "https://www.udemy.com/course/graphic-design-basics/" },
+                    { title: "The Non-Designer’s Design Book", type: "Book", link: "https://www.amazon.com/Non-Designers-Design-Book-Software-ebook/dp/B003VSJS44" }
+                ];
+            } else if (career === 'Software Developer') {
+                materials = [
+                    { title: "Learn Python", type: "Course", link: "https://www.codecademy.com/learn/learn-python-3" },
+                    { title: "The Pragmatic Programmer", type: "Book", link: "https://pragprog.com/titles/tpp20/the-pragmatic-programmer/" }
+                ];
+            } else if (career === 'Researcher') {
+                materials = [
+                    { title: "Research Methods", type: "Course", link: "https://www.coursera.org/learn/research-methods" },
+                    { title: "The Craft of Research", type: "Book", link: "https://www.amazon.com/Craft-Research-Chicago-Writing-Publishing/dp/022623973X" }
+                ];
+            } else if (career === 'Business Analyst') {
+                materials = [
+                    { title: "Learn Business Analysis", type: "Course", link: "https://www.edx.org/learn/business-analysis" },
+                    { title: "The Business Analyst's Handbook", type: "Book", link: "https://www.amazon.com/Business-Analysts-Handbook-2nd-Edition/dp/0995131410" }
+                ];
+            }
+
+            // Display learning materials
+            const materialsList = document.getElementById('materials-list');
+            materialsList.innerHTML = '';  // Clear existing content
+
+            materials.forEach(material => {
+                const materialDiv = document.createElement('div');
+                materialDiv.className = 'material';
+                materialDiv.innerHTML = `
+                    <h3>${material.title}</h3>
+                    <p>Type: ${material.type}</p>
+                    <a href="${material.link}" target="_blank">Learn more</a>
+                `;
+                materialsList.appendChild(materialDiv);
+            });
+
+            document.getElementById('result-page').style.display = 'none';
+            document.getElementById('learning-materials-page').style.display = 'block';
+        }
+
+        // Function to show login page
+        function showLoginPage() {
+            alert('Redirecting to Login Page (functionality not implemented)');
+        }
+
+        // Function to show register page
+        function showRegisterPage() {
+            alert('Redirecting to Register Page (functionality not implemented)');
+        }
+    </script>
+  <script src="script.js"></script>
+</body>
+</html>

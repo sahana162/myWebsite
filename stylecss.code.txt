@@ -1,0 +1,111 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #7AB2D3;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo h1 {
+    font-size: 30px;
+    margin: 0;
+}
+
+header .logo p {
+    font-size: 18px;
+    margin: 0;
+}
+
+header nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+button {
+    background-color: #7AB2D3;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #5b97b3;
+}
+
+h1 {
+    color: #333;
+}
+
+/* Pages visibility */
+#login-page {
+    display: none;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* Form Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"] {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.password-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input {
+    width: 100%;
+}
+
+.show-password {
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    display: none;
+}
